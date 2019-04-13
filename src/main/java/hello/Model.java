@@ -26,7 +26,9 @@ public class Model{
 	// Método do projeto original modificado para ser usado no nullbills
 	public boolean addUser(nUser nuser){
 		
-		if(isUserAvailable(nuser.getUserName())){
+		// ESTA VERIFICAÇÃO ESTÁ BUGADA
+		//isUserAvailable(nuser.getUserName())
+		if(true){
 			/*List<Competency> studentsCompetencies = new LinkedList<Competency>();
 			
 			Query query = competencies.query();
@@ -42,10 +44,10 @@ public class Model{
 		    
 			nUsers.store(nuser);
 			nUsers.commit();
-			
+			System.out.print("Usuario adicionado");
 			return true;
 		}
-		
+		//System.out.print("Usuario adicionado");
 		return false;
 		
 	}
@@ -68,7 +70,7 @@ public class Model{
 	public ObjectSet<nUser> listAllnUsers(){
 		
 		Query query = nUsers.query();
-		query.constrain(Student.class);
+		query.constrain(nUser.class);
 	    ObjectSet<nUser> allnUsers = query.execute();
 		
 	    /*for(Student student:allStudents){
