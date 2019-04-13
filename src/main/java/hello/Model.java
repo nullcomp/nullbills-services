@@ -10,6 +10,10 @@ import com.db4o.query.Query;
 
 public class Model{
 	
+	// Criação para o nulbiils
+	ObjectContainer nUsers = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/nUsers.db4o");
+	//
+	
 	ObjectContainer students = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/students.db4o");
 	ObjectContainer questions = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/questions.db4o");
 	ObjectContainer competencies = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/competencies.db4o");
@@ -19,10 +23,11 @@ public class Model{
 	
 
 	
-	public boolean addStudent(Student student){
+	// Método do projeto original modificado para ser usado no nullbills
+	public boolean addUser(nUser nuser){
 		
-		if(isUserAvailable(student.getUserName())){
-			List<Competency> studentsCompetencies = new LinkedList<Competency>();
+		if(isUserAvailable(nuser.getUserName())){
+			/*List<Competency> studentsCompetencies = new LinkedList<Competency>();
 			
 			Query query = competencies.query();
 			query.constrain(Competency.class);
@@ -32,11 +37,11 @@ public class Model{
 		    	studentsCompetencies.add(competency);
 		    }
 			
-		    student.setCompetencies(studentsCompetencies);
+		    student.setCompetencies(studentsCompetencies);*/
 		    
 		    
-			students.store(student);
-			students.commit();
+			nUsers.store(nuser);
+			nUsers.commit();
 			
 			return true;
 		}
@@ -45,6 +50,38 @@ public class Model{
 		
 	}
 	
+	//
+	// Classe modificada do projeto original para o projeto nullbuills
+	public boolean isUserAvailable(String username){
+			Query query = nUsers.query();
+			query.constrain(nUser.class);
+		    ObjectSet<nUser> allnUsers = query.execute();
+		    
+		    for(nUser nuser:allnUsers){
+		    	if(nuser.getUserName().equals(username)) return false;
+		    }
+		    
+		    return true;
+		}
+	
+	// Método alterado do programa original para o NullBills
+	public ObjectSet<nUser> listAllnUsers(){
+		
+		Query query = nUsers.query();
+		query.constrain(Student.class);
+	    ObjectSet<nUser> allnUsers = query.execute();
+		
+	    /*for(Student student:allStudents){
+	    	if(student.getRa()==ra){
+	    		return student;
+	    	}
+	    	
+	    }*/
+	    
+	    return allnUsers;
+	}
+	
+	//
 	public boolean addPsychologist(Psychologist psychologist){
 		if(isPsychologistUserAvailable(psychologist.getUserName())){
 			
@@ -69,18 +106,6 @@ public class Model{
 		}
 		
 		return false;
-	}
-	
-	public boolean isUserAvailable(String username){
-		Query query = students.query();
-		query.constrain(Student.class);
-	    ObjectSet<Student> allStudents = query.execute();
-	    
-	    for(Student student:allStudents){
-	    	if(student.getUserName().equals(username)) return false;
-	    }
-	    
-	    return true;
 	}
 	
 	public boolean isPsychologistUserAvailable(String username){
@@ -244,25 +269,7 @@ public class Model{
 
 	}
 	
-	public Student searchStudentbyRA(int ra){
-		
-		
-		Query query = students.query();
-		query.constrain(Student.class);
-	    ObjectSet<Student> allStudents = query.execute();
-		
-	    for(Student student:allStudents){
-	    	if(student.getRa()==ra){
-	    		return student;
-	    	}
-	    	
-	    }
-	    
-	    return null;
 
-		
-	}
-	
 	public Question searchQuestionByCode(int code){
 		
 		Query query = questions.query();

@@ -36,10 +36,14 @@ public class MainServer {
 		
 		REST controller = new REST(model); 
 		
+		// rests do NullBills inicializados
+		controller.setnUSer();
+		controller.getnUsers();
 		
+		// rests do projeto do Giuliano
 		controller.getLogin();
-		controller.getStudentsQuestionbyRA();
-		controller.getStudentCompetencies();
+		//controller.getStudentsQuestionbyRA();
+		//controller.getStudentCompetencies();
 		controller.getQuestionByNumber();
 		controller.getStudentsbyInstitutionCourseYearPeriod();
 		controller.setAnswerbyCode();
@@ -50,7 +54,7 @@ public class MainServer {
 		controller.setQuestion();
 		controller.getAllQuestions();
 		controller.deleteQuestion();
-		controller.setStudent();
+		
 		controller.loginPsychologist();
 		controller.setNewCompetency();
 		controller.deleteCompetency();
@@ -62,7 +66,11 @@ public class MainServer {
     }
 	
     public static void initializeModel(){
-		
+    	
+		model.addUser(new nUser("Mateus Souza", "senha", "mateus@fatec.sp.gov.br"));
+    	
+    	/*
+    	
     	model.addADM(new ADM("adm@adm.com", "12345", "João", "Fatec"));
         Institution fatecsjc = new Institution("fatecsjc");
 		Institution fatecmarilia = new Institution("fatecmarilia");
@@ -85,9 +93,9 @@ public class MainServer {
 		model.addCompetency(new Competency("esforco"));
 		model.addCompetency(new Competency("concentracao"));
 		
-		model.addStudent(new Student("joao@gmail.com", "12345", "Joao", 1111, "fatecsjc", "bd" ,2016, 1));
-		model.addStudent(new Student("lilian@gmail.com", "12345", "Lilian", 2222, "fatecsjc", "bd", 2016, 1));
-		model.addStudent(new Student("giuliano@gmail.com", "12345", "Giuliano", 3333, "fatecsjc", "bd", 2016, 1));
+		//model.addStudent(new Student("joao@gmail.com", "12345", "Joao", 1111, "fatecsjc", "bd" ,2016, 1));
+		//model.addStudent(new Student("lilian@gmail.com", "12345", "Lilian", 2222, "fatecsjc", "bd", 2016, 1));
+		//model.addStudent(new Student("giuliano@gmail.com", "12345", "Giuliano", 3333, "fatecsjc", "bd", 2016, 1));
 		
 		model.addPsychologist(new Psychologist("marilia@gmail.com", "12345", "Marilia Bertoti", "Fatec SJC"));
 		
@@ -175,7 +183,7 @@ public class MainServer {
 			
 		model.addQuestion(new Question(1, "https://www.youtube.com/embed/JLQtIR_IFnQ", "video", "Qual sensor está sendo usado para esta Interação Humano Computador", answers_2));
 		
-		
+		*/
 	}
 	
 }

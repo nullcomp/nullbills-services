@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.db4o.ObjectSet;
 import com.google.gson.Gson;
 
 import spark.Request;
@@ -30,6 +31,118 @@ public class REST{
 		this.model = store;
 	}
 	
+	
+	// Método reescrito do projeto original para o NullBills
+	public void setnUSer(){
+			
+			post("/nUser", new Route() {
+				@Override
+	            public Object handle(final Request request, final Response response){
+		        	
+		           response.header("Access-Control-Allow-Origin", "*");
+
+		           Gson gson = new Gson();
+		           
+		           String json = request.body();
+		           
+		           
+		           
+		           nUser nuser = gson.fromJson(json, nUser.class);
+		           
+		           
+		           
+	         	    
+	         	   try {
+		            	
+		            		boolean status = model.addUser(nuser);
+		            		
+		            		if(status){
+		            			
+		            			JSONArray jsonResult = new JSONArray();
+			 	         	    JSONObject jsonObj = new JSONObject();
+			     
+				        		jsonObj.put("status", 1);
+				        		
+				        		
+				             	jsonResult.put(jsonObj);
+				             	
+				             	
+				             	
+				             	return jsonResult;
+		            		}
+		            		
+		            		
+		            		
+		            	
+		            	
+		            	
+		             	
+		        		} catch (JSONException e) {
+		        				
+		        			e.printStackTrace();
+		        		}
+	         	    
+	         	    JSONArray jsonResult = new JSONArray();
+	         	    JSONObject jsonObj = new JSONObject();
+	         	   	
+	         	    jsonObj.put("status", 0);
+	        		
+	        		
+	             	jsonResult.put(jsonObj);
+	             	
+	             	return jsonResult;
+	         	   
+	         	   
+		        	
+			   }
+			});     
+		}
+		//
+	
+	// Método reescrito do projeto original para o NullBills
+	public void getnUsers(){
+			
+			get("/nUsers", new Route() {
+				@Override
+	            public Object handle(final Request request, final Response response){
+		        	
+		        	 
+		        	 
+		        	response.header("Access-Control-Allow-Origin", "*");
+		        	 
+		        	//Integer ra = Integer.parseInt(request.params(":ra"));
+		            
+		            try {
+		            	ObjectSet<nUser> allnUsers = model.listAllnUsers();
+		            	
+		            	JSONArray jsonResult = new JSONArray();
+		         	    JSONObject jsonObj = new JSONObject();
+
+		         	    
+		         	   for(nUser nuser:allnUsers){
+		         		  jsonObj.put("Username", nuser.getUserName());
+		         		  jsonObj.put("Password", nuser.getPassword());
+		         		  jsonObj.put("email", nuser.geteMail());
+		         		  jsonResult.put(jsonObj);
+		       	    	}
+		       	    	
+		             	return jsonResult;
+		             	
+		        		} catch (JSONException e) {
+		        				
+		        			e.printStackTrace();
+		        		}
+		         	    	
+		
+		     	    return null;
+		     	     
+		         }
+		         
+		      });
+			
+			
+		}
+//
 	
 	public void getLogin(){
 		
@@ -228,7 +341,7 @@ public class REST{
 
          
 	}
-	
+	/*
 	public void getStudentCompetencies(){
 		
 		
@@ -282,48 +395,8 @@ public class REST{
 
 	         
 	}
+	*/
 	
-	public void getStudentsQuestionbyRA(){
-		
-		get("/user/:ra", new Route() {
-			@Override
-            public Object handle(final Request request, final Response response){
-	        	
-	        	 
-	        	 
-	        	response.header("Access-Control-Allow-Origin", "*");
-	        	 
-	        	Integer ra = Integer.parseInt(request.params(":ra"));
-	            
-	            try {
-	            	Student student = model.searchStudentbyRA(ra);
-	            	
-	            	JSONArray jsonResult = new JSONArray();
-	         	    JSONObject jsonObj = new JSONObject();
-
-	        		jsonObj.put("question", student.getQuestion());
-	        		jsonObj.put("completed", student.getCompleted());
-	        		jsonObj.put("statusComment", student.getStatusComment());
-	        		jsonObj.put("psychologistComment", student.getPsychologistComment());
-	        		
-	             	jsonResult.put(jsonObj);
-	             	
-	             	return jsonResult;
-	             	
-	        		} catch (JSONException e) {
-	        				
-	        			e.printStackTrace();
-	        		}
-	         	    	
-	
-	     	    return null;
-	     	     
-	         }
-	         
-	      });
-		
-		
-	}
 	
 	public void getQuestionByNumber(){
 		
@@ -867,71 +940,8 @@ public class REST{
 
          
     }
-	
-	public void setStudent(){
-		
-		post("/student", new Route() {
-			@Override
-            public Object handle(final Request request, final Response response){
-	        	
-	           response.header("Access-Control-Allow-Origin", "*");
 
-	           Gson gson = new Gson();
-	           
-	           String json = request.body();
-	           
-	           
-	           
-	           Student student = gson.fromJson(json, Student.class);
-	           
-	           
-	           
-         	    
-         	   try {
-	            	
-	            		boolean status = model.addStudent(student);
-	            		
-	            		if(status){
-	            			
-	            			JSONArray jsonResult = new JSONArray();
-		 	         	    JSONObject jsonObj = new JSONObject();
-		     
-			        		jsonObj.put("status", 1);
-			        		
-			        		
-			             	jsonResult.put(jsonObj);
-			             	
-			             	
-			             	
-			             	return jsonResult;
-	            		}
-	            		
-	            		
-	            		
-	            	
-	            	
-	            	
-	             	
-	        		} catch (JSONException e) {
-	        				
-	        			e.printStackTrace();
-	        		}
-         	    
-         	    JSONArray jsonResult = new JSONArray();
-         	    JSONObject jsonObj = new JSONObject();
-         	   	
-         	    jsonObj.put("status", 0);
-        		
-        		
-             	jsonResult.put(jsonObj);
-             	
-             	return jsonResult;
-         	   
-         	   
-	        	
-		   }
-		});     
-	}
+	
 	
 	
 	
