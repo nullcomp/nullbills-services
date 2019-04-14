@@ -10,7 +10,7 @@ import com.db4o.query.Query;
 
 public class Model{
 	
-	// Criação para o nulbiils
+	// Criaï¿½ï¿½o para o nulbiils
 	ObjectContainer nUsers = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/nUsers.db4o");
 	//
 	
@@ -23,12 +23,12 @@ public class Model{
 	
 
 	
-	// Método do projeto original modificado para ser usado no nullbills
+	// Mï¿½todo do projeto original modificado para ser usado no nullbills
 	public boolean addUser(nUser nuser){
 		
-		// ESTA VERIFICAÇÃO ESTÁ BUGADA
+		
 		//isUserAvailable(nuser.getUserName())
-		if(true){
+		if(isUserAvailable(nuser.getUserName())){
 			/*List<Competency> studentsCompetencies = new LinkedList<Competency>();
 			
 			Query query = competencies.query();
@@ -66,7 +66,7 @@ public class Model{
 		    return true;
 		}
 	
-	// Método alterado do programa original para o NullBills
+	// Mï¿½todo alterado do programa original para o NullBills
 	public ObjectSet<nUser> listAllnUsers(){
 		
 		Query query = nUsers.query();

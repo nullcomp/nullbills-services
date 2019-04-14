@@ -12,6 +12,8 @@ public class nUser {
 		this.password = password;
 		this.eMail = eMail;
 	}
+	
+	// Getters and Setters
 
 	public String getUserName() {
 		return userName;
@@ -37,6 +39,6 @@ public class nUser {
 		this.eMail = eMail;
 	}
 	
-	// Getters and Setters
+	
 	
 }

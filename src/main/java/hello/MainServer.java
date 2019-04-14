@@ -41,28 +41,28 @@ public class MainServer {
 		controller.getnUsers();
 		
 		// rests do projeto do Giuliano
-		controller.getLogin();
+		//controller.getLogin();
 		//controller.getStudentsQuestionbyRA();
 		//controller.getStudentCompetencies();
-		controller.getQuestionByNumber();
-		controller.getStudentsbyInstitutionCourseYearPeriod();
-		controller.setAnswerbyCode();
-		controller.getAllInstitutions();
-		controller.getCourses();
-		controller.setComments();
-		controller.getAllCompetencies();
-		controller.setQuestion();
-		controller.getAllQuestions();
-		controller.deleteQuestion();
+		//controller.getQuestionByNumber();
+		//controller.getStudentsbyInstitutionCourseYearPeriod();
+		//controller.setAnswerbyCode();
+		//controller.getAllInstitutions();
+		//controller.getCourses();
+		//controller.setComments();
+		//controller.getAllCompetencies();
+		//controller.setQuestion();
+		//controller.getAllQuestions();
+		//controller.deleteQuestion();
 		
-		controller.loginPsychologist();
-		controller.setNewCompetency();
-		controller.deleteCompetency();
-		controller.setNewCourse();
-		controller.deleteCourse();
-		controller.loginADM();
-		controller.setPsychologist();
-		controller.setADM();
+		//controller.loginPsychologist();
+		//controller.setNewCompetency();
+		//controller.deleteCompetency();
+		//controller.setNewCourse();
+		//controller.deleteCourse();
+		//controller.loginADM();
+		//controller.setPsychologist();
+		//controller.setADM();
     }
 	
     public static void initializeModel(){
@@ -71,7 +71,7 @@ public class MainServer {
     	
     	/*
     	
-    	model.addADM(new ADM("adm@adm.com", "12345", "João", "Fatec"));
+    	model.addADM(new ADM("adm@adm.com", "12345", "Joï¿½o", "Fatec"));
         Institution fatecsjc = new Institution("fatecsjc");
 		Institution fatecmarilia = new Institution("fatecmarilia");
 		model.addInstitution(fatecsjc);
@@ -84,7 +84,7 @@ public class MainServer {
 		fatecmarilia.addCourse("bd");
 		fatecmarilia.addCourse("aeronautica");
 		
-		model.addADM(new ADM("adm@adm.com", "12345", "João", "Fatec"));
+		model.addADM(new ADM("adm@adm.com", "12345", "Joï¿½o", "Fatec"));
 		
 		model.addInstitution(fatecsjc);
 		model.addInstitution(fatecmarilia);
@@ -109,7 +109,7 @@ public class MainServer {
 		competencies1.add(comp2);
 		
 		List<Answer> answers = new LinkedList<Answer>();
-		Answer answersA = new Answer(1, "Interface Gráfica", competencies1);
+		Answer answersA = new Answer(1, "Interface Grï¿½fica", competencies1);
 		answers.add(answersA);
 		
 		List<Competency> competencies2 = new LinkedList<Competency>();
@@ -136,10 +136,10 @@ public class MainServer {
 		Competency comp8 = new Competency("leadership", 0);
 		competencies4.add(comp8);
 		
-		Answer answersD = new Answer(4, "Interface Orgânica", competencies4);
+		Answer answersD = new Answer(4, "Interface Orgï¿½nica", competencies4);
 		answers.add(answersD);
 		
-		model.addQuestion(new Question(2, "http://giulianobertoti.github.io/assets/img/user.png", "video", "Qual é este tipo de Interação Humano Computador", answers));
+		model.addQuestion(new Question(2, "http://giulianobertoti.github.io/assets/img/user.png", "video", "Qual ï¿½ este tipo de Interaï¿½ï¿½o Humano Computador", answers));
 	
 		
 		//adicionando a questao 2
@@ -151,7 +151,7 @@ public class MainServer {
 		competencies5.add(comp10);
 				
 		List<Answer> answers_2 = new LinkedList<Answer>();
-		Answer answersA_2 = new Answer(1, "Acelerômetro", competencies5);
+		Answer answersA_2 = new Answer(1, "Acelerï¿½metro", competencies5);
 		answers_2.add(answersA_2);
 				
 		List<Competency> competencies6 = new LinkedList<Competency>();
@@ -160,7 +160,7 @@ public class MainServer {
 		competencies6.add(comp11);
 		competencies6.add(comp12);
 				
-		Answer answersB_2 = new Answer(2, "Câmera", competencies6);
+		Answer answersB_2 = new Answer(2, "Cï¿½mera", competencies6);
 		answers_2.add(answersB_2);
 			
 		List<Competency> competencies7 = new LinkedList<Competency>();
@@ -181,7 +181,7 @@ public class MainServer {
 		Answer answersD_2 = new Answer(4, "Touch", competencies8);
 		answers_2.add(answersD_2);
 			
-		model.addQuestion(new Question(1, "https://www.youtube.com/embed/JLQtIR_IFnQ", "video", "Qual sensor está sendo usado para esta Interação Humano Computador", answers_2));
+		model.addQuestion(new Question(1, "https://www.youtube.com/embed/JLQtIR_IFnQ", "video", "Qual sensor estï¿½ sendo usado para esta Interaï¿½ï¿½o Humano Computador", answers_2));
 		
 		*/
 	}
