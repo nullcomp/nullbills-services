@@ -12,6 +12,7 @@ public class Model{
 	
 	// Cria��o para o nulbiils
 	ObjectContainer nUsers = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/nUsers.db4o");
+	ObjectContainer nEntrada = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/nEntrada.db4o");
 	//
 	
 	ObjectContainer students = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/students.db4o");
@@ -44,7 +45,7 @@ public class Model{
 		    
 			nUsers.store(nuser);
 			nUsers.commit();
-			System.out.print("Usuario adicionado");
+			//System.out.print("Usuario adicionado");
 			return true;
 		}
 		//System.out.print("Usuario adicionado");
@@ -81,6 +82,26 @@ public class Model{
 	    }*/
 	    
 	    return allnUsers;
+	}
+	
+	public nUser findUserByName(String name) {
+		ObjectSet<nUser> allnUsers = this.listAllnUsers();
+		for(nUser user: allnUsers) {
+			if (user.getUserName().equals(name)) return user;
+		}
+		return null;
+	}
+	
+	public boolean addnEntrada(nEntrada entrada) {
+		nEntrada.store(entrada);
+		nEntrada.commit();
+		return true;
+	}
+	
+	public ObjectSet<nEntrada> listAllEntradas(){
+		Query query = nEntrada.query();
+		query.constrain(nEntrada.class);
+		return query.execute();
 	}
 	
 	//

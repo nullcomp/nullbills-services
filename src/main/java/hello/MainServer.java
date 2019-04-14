@@ -1,12 +1,12 @@
 package hello;
 
 import static spark.Spark.*;
+import java.util.Date;
 
 
 
-
-import java.util.LinkedList;
-import java.util.List;
+//import java.util.LinkedList;
+//import java.util.List;
 
 
 
@@ -40,6 +40,9 @@ public class MainServer {
 		controller.setnUSer();
 		controller.getnUsers();
 		
+		
+		controller.setnEntrada();
+		
 		// rests do projeto do Giuliano
 		//controller.getLogin();
 		//controller.getStudentsQuestionbyRA();
@@ -68,7 +71,9 @@ public class MainServer {
     public static void initializeModel(){
     	
 		model.addUser(new nUser("Mateus Souza", "senha", "mateus@fatec.sp.gov.br"));
-    	
+    	model.addnEntrada(new nEntrada(1200, new Date(), new Date(), model.findUserByName("Mateus Souza") ) );
+    	model.addnEntrada(new nEntrada(1500, new Date(), new Date(), model.findUserByName("Mateus Souza") ) );
+
     	/*
     	
     	model.addADM(new ADM("adm@adm.com", "12345", "Jo�o", "Fatec"));

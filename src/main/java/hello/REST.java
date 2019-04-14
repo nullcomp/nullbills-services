@@ -32,7 +32,7 @@ public class REST{
 	}
 	
 	
-	// Método reescrito do projeto original para o NullBills
+	// Mï¿½todo reescrito do projeto original para o NullBills
 	public void setnUSer(){
 			
 			post("/nUser", new Route() {
@@ -99,7 +99,7 @@ public class REST{
 		}
 		//
 	
-	// Método reescrito do projeto original para o NullBills
+	// Mï¿½todo reescrito do projeto original para o NullBills
 	public void getnUsers(){
 			
 			get("/nUsers", new Route() {
@@ -143,7 +143,116 @@ public class REST{
 			
 		}
 //
+	public void setnEntrada(){
+		
+		post("/nEntrada", new Route() {
+			@Override
+            public Object handle(final Request request, final Response response){
+	        	
+	           response.header("Access-Control-Allow-Origin", "*");
+
+	           Gson gson = new Gson();
+	           
+	           String json = request.body();
+	           
+	           
+	           
+	           nEntrada entrada = gson.fromJson(json, nEntrada.class);
+	           
+	           
+	           
+         	    
+         	   try {
+	            	
+	            		boolean status = model.addnEntrada(entrada);
+	            		
+	            		if(status){
+	            			
+	            			JSONArray jsonResult = new JSONArray();
+		 	         	    JSONObject jsonObj = new JSONObject();
+		     
+			        		jsonObj.put("status", 1);
+			        		
+			        		
+			             	jsonResult.put(jsonObj);
+			             	
+			             	
+			             	
+			             	return jsonResult;
+	            		}
+	            		
+	            		
+	            		
+	            	
+	            	
+	            	
+	             	
+	        		} catch (JSONException e) {
+	        				
+	        			e.printStackTrace();
+	        		}
+         	    
+         	    JSONArray jsonResult = new JSONArray();
+         	    JSONObject jsonObj = new JSONObject();
+         	   	
+         	    jsonObj.put("status", 0);
+        		
+        		
+             	jsonResult.put(jsonObj);
+             	
+             	return jsonResult;
+         	   
+         	   
+	        	
+		   }
+		});     
+	}
+
+	public void getnEntradas(){
+		
+		get("/nEntradas", new Route() {
+			@Override
+            public Object handle(final Request request, final Response response){
+	        	
+	        	 
+	        	 
+	        	response.header("Access-Control-Allow-Origin", "*");
+	        	 
+	        	//Integer ra = Integer.parseInt(request.params(":ra"));
+	            
+	            try {
+	            	ObjectSet<nEntrada> allnEntradas = model.listAllEntradas();
+	            	
+	            	JSONArray jsonResult = new JSONArray();
+	         	    JSONObject jsonObj = new JSONObject();
+
+	         	    
+	         	   for(nEntrada entrada:allnEntradas){
+	         		  jsonObj.put("dataAgendada", entrada.getDataAgendada());
+	         		  jsonObj.put("dataExecucao", entrada.getDataExecucao());
+	         		  jsonObj.put("usuario", entrada.getUserOwner());
+	         		  jsonObj.put("valorEntrada", entrada.getValorEntrada());
+	         		  jsonResult.put(jsonObj);
+	       	    	}
+	       	    	
+	             	return jsonResult;
+	             	
+	        		} catch (JSONException e) {
+	        				
+	        			e.printStackTrace();
+	        		}
+	         	    	
 	
+	     	    return null;
+	     	     
+	         }
+	         
+	      });
+		
+		
+	}	
+	
+	//
 	public void getLogin(){
 		
 		get("/login/:username/:password", new Route() {
