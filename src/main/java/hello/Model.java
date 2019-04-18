@@ -13,6 +13,7 @@ public class Model{
 	// Cria��o para o nulbiils
 	ObjectContainer nUsers = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/nUsers.db4o");
 	ObjectContainer nEntrada = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/nEntrada.db4o");
+	ObjectContainer nSaida = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/nSaida.db4o");
 	//
 	
 	ObjectContainer students = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/students.db4o");
@@ -104,7 +105,20 @@ public class Model{
 		return query.execute();
 	}
 	
+
+	public boolean addnSaida(nSaida saida) {
+		nSaida.store(saida);
+		nSaida.commit();
+		return true;
+	}
+	
+	public ObjectSet<nSaida> listAllSaidas(){
+		Query query = nSaida.query();
+		query.constrain(nSaida.class);
+		return query.execute();
+	}
 	//
+
 	public boolean addPsychologist(Psychologist psychologist){
 		if(isPsychologistUserAvailable(psychologist.getUserName())){
 			

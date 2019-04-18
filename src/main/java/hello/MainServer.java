@@ -42,6 +42,10 @@ public class MainServer {
 		
 		
 		controller.setnEntrada();
+		controller.getnEntradas();
+		
+		controller.setnSaida();
+		controller.getnSaidas();
 		
 		// rests do projeto do Giuliano
 		//controller.getLogin();
@@ -71,8 +75,12 @@ public class MainServer {
     public static void initializeModel(){
     	
 		model.addUser(new nUser("Mateus Souza", "senha", "mateus@fatec.sp.gov.br"));
+		
     	model.addnEntrada(new nEntrada(1200, new Date(), new Date(), model.findUserByName("Mateus Souza") ) );
     	model.addnEntrada(new nEntrada(1500, new Date(), new Date(), model.findUserByName("Mateus Souza") ) );
+    	
+    	model.addnSaida(new nSaida(1500, new Date(), new Date(), model.findUserByName("Mateus Souza")));
+    	model.addnSaida(new nSaida(1800, new Date(), new Date(), model.findUserByName("Mateus Souza")));
 
     	/*
     	

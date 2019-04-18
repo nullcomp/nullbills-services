@@ -142,7 +142,8 @@ public class REST{
 			
 			
 		}
-//
+
+	// Métodos para as entradas
 	public void setnEntrada(){
 		
 		post("/nEntrada", new Route() {
@@ -251,6 +252,118 @@ public class REST{
 		
 		
 	}	
+	
+	// Métodos para as saidas
+	
+	public void setnSaida(){
+		
+		post("/nSaida", new Route() {
+			@Override
+            public Object handle(final Request request, final Response response){
+	        	
+	           response.header("Access-Control-Allow-Origin", "*");
+
+	           Gson gson = new Gson();
+	           
+	           String json = request.body();
+	           
+	           
+	           
+	           nSaida saida = gson.fromJson(json, nSaida.class);
+	           
+	           
+	           
+         	    
+         	   try {
+	            	
+	            		boolean status = model.addnSaida(saida);
+	            		
+	            		if(status){
+	            			
+	            			JSONArray jsonResult = new JSONArray();
+		 	         	    JSONObject jsonObj = new JSONObject();
+		     
+			        		jsonObj.put("status", 1);
+			        		
+			        		
+			             	jsonResult.put(jsonObj);
+			             	
+			             	
+			             	
+			             	return jsonResult;
+	            		}
+	            		
+	            		
+	            		
+	            	
+	            	
+	            	
+	             	
+	        		} catch (JSONException e) {
+	        				
+	        			e.printStackTrace();
+	        		}
+         	    
+         	    JSONArray jsonResult = new JSONArray();
+         	    JSONObject jsonObj = new JSONObject();
+         	   	
+         	    jsonObj.put("status", 0);
+        		
+        		
+             	jsonResult.put(jsonObj);
+             	
+             	return jsonResult;
+         	   
+         	   
+	        	
+		   }
+		});     
+	}
+
+	public void getnSaidas(){
+		
+		get("/nSaidas", new Route() {
+			@Override
+            public Object handle(final Request request, final Response response){
+	        	
+	        	 
+	        	 
+	        	response.header("Access-Control-Allow-Origin", "*");
+	        	 
+	        	//Integer ra = Integer.parseInt(request.params(":ra"));
+	            
+	            try {
+	            	ObjectSet<nSaida> allnSaidas = model.listAllSaidas();
+	            	
+	            	JSONArray jsonResult = new JSONArray();
+	         	    JSONObject jsonObj = new JSONObject();
+
+	         	    
+	         	   for(nSaida saida:allnSaidas){
+	         		  jsonObj.put("dataAgendada", saida.getDataAgendada());
+	         		  jsonObj.put("dataExecucao", saida.getDataExecucao());
+	         		  jsonObj.put("usuario", saida.getUserOwner());
+	         		  jsonObj.put("valorEntrada", saida.getValorSaida());
+	         		  jsonResult.put(jsonObj);
+	       	    	}
+	       	    	
+	             	return jsonResult;
+	             	
+	        		} catch (JSONException e) {
+	        				
+	        			e.printStackTrace();
+	        		}
+	         	    	
+	
+	     	    return null;
+	     	     
+	         }
+	         
+	      });
+		
+		
+	}	
+	
 	
 	//
 	public void getLogin(){
