@@ -1,11 +1,11 @@
 package hello;
 import java.util.Date;
  
-abstract class nMovimento {
+abstract class Movimento {
 	
 	private Date dataAgendada;
 	private Date dataExecucao;
-	private nUser userOwner;
+	private User userOwner;
 	
 	// get e set
 	public Date getDataAgendada() {
@@ -20,10 +20,10 @@ abstract class nMovimento {
 	public void setDataExecucao(Date dataExecucao) {
 		this.dataExecucao = dataExecucao;
 	}
-	public nUser getUserOwner() {
+	public User getUserOwner() {
 		return userOwner;
 	}
-	public void setUserOwner(nUser userOwner) {
+	public void setUserOwner(User userOwner) {
 		this.userOwner = userOwner;
 	}
 	

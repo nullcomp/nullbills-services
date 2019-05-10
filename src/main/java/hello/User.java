@@ -1,12 +1,12 @@
 package hello;
 
-public class nUser {
+public class User {
 	private String userName;
 	private String password;
 	private String eMail;
 	
 	// Constructor 
-	nUser(String userName, String password, String eMail){
+	User(String userName, String password, String eMail){
 		if (userName.isEmpty() || password.isEmpty() || eMail.isEmpty()) return;
 		this.userName = userName;
 		this.password = password;

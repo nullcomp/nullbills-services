@@ -2,10 +2,10 @@ package hello;
 
 import java.util.Date;
 
-public class nEntrada extends nMovimento {
+public class Entrada extends Movimento {
 	private double valorEntrada;
 	
-	nEntrada( double valorEntrada, Date dataAgendada, Date dataExecucao, nUser userOwner ){
+	Entrada( double valorEntrada, Date dataAgendada, Date dataExecucao, User userOwner ){
 		this.valorEntrada = valorEntrada;
 		super.setDataAgendada(dataAgendada);
 		super.setDataExecucao(dataExecucao);
