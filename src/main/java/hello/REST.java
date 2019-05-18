@@ -116,10 +116,12 @@ public class REST{
 		            	ObjectSet<User> allnUsers = model.listAllusers();
 		            	
 		            	JSONArray jsonResult = new JSONArray();
-		         	    JSONObject jsonObj = new JSONObject();
+		         		  
+
 
 		         	    
 		         	   for(User nuser:allnUsers){
+		         		  JSONObject jsonObj = new JSONObject();
 		         		  jsonObj.put("Username", nuser.getUserName());
 		         		  jsonObj.put("Password", nuser.getPassword());
 		         		  jsonObj.put("email", nuser.geteMail());
@@ -143,6 +145,45 @@ public class REST{
 			
 		}
 
+	
+	public void returnOneUser() {
+		get("/findUser", new Route( ) {
+			@Override
+			public Object handle(final Request request, final Response response) {
+				
+				response.header("Access-Control-Allow-Origin", "*");
+				
+				try {
+	            	ObjectSet<User> allnUsers = model.listAllusers();
+	            	
+	            	JSONObject jsonObj = new JSONObject();
+	            	jsonObj = null;
+	         	   for(User nuser:allnUsers){
+	         		   String charlbro = request.body();
+	         		   System.out.println(charlbro);
+	         		   if (nuser.getUserName() == "porra") {
+
+	 	         		  
+	 	         		  jsonObj.put("Username", nuser.getUserName());
+	 	         		  jsonObj.put("Password", nuser.getPassword());
+	 	         		  jsonObj.put("email", nuser.geteMail());
+	 	         		    
+	         		   }
+	       	    	}
+	       	    	
+	         	   		return jsonObj;
+	         	   	
+					} catch (JSONException e) {
+	        				
+	        			e.printStackTrace();
+	        		}
+	         	    	
+	
+	     	    return null;
+			}
+		});
+	}
+	
 	// Métodos para as entradas
 	public void setEntrada(){
 		
