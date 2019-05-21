@@ -156,18 +156,22 @@ public class REST{
 				try {
 	            	ObjectSet<User> allnUsers = model.listAllusers();
 	            	
+	            	String body = request.body();
+	            	
+	            	
 	            	JSONObject jsonObj = new JSONObject();
-	            	jsonObj = null;
-	         	   for(User nuser:allnUsers){
+	         	   	for(User nuser:allnUsers){
+	         		  
 	         		   String charlbro = request.body();
 	         		   System.out.println(charlbro);
-	         		   if (nuser.getUserName() == "porra") {
+	         		   if (nuser.getUserName() == "Mateus Souza") {
 
 	 	         		  
 	 	         		  jsonObj.put("Username", nuser.getUserName());
 	 	         		  jsonObj.put("Password", nuser.getPassword());
 	 	         		  jsonObj.put("email", nuser.geteMail());
 	 	         		    
+	 	         		  response.status(200);
 	         		   }
 	       	    	}
 	       	    	
