@@ -44,13 +44,13 @@ public class MainServer {
 	
     public static void initializeModel(){
     	
-		model.addUser(new User("Mateus Souza", "senha", "mateus@fatec.sp.gov.br"));
+		//model.addUser(new User("Mateus Souza", "senha", "mateus@fatec.sp.gov.br"));
 		
-    	model.addEntrada(new Entrada(1200, new Date(), new Date(), model.findUserByName("Mateus Souza") ) );
-    	model.addEntrada(new Entrada(1500, new Date(), new Date(), model.findUserByName("Mateus Souza") ) );
+    	//model.addEntrada(new Entrada(1200, new Date(), new Date(), model.findUserByName("Mateus Souza") ) );
+    	//model.addEntrada(new Entrada(1500, new Date(), new Date(), model.findUserByName("Mateus Souza") ) );
     	
-    	model.addSaida(new Saida(1500, new Date(), new Date(), model.findUserByName("Mateus Souza")));
-    	model.addSaida(new Saida(1800, new Date(), new Date(), model.findUserByName("Mateus Souza")));
+    	//model.addSaida(new Saida(1500, new Date(), new Date(), model.findUserByName("Mateus Souza")));
+    	//model.addSaida(new Saida(1800, new Date(), new Date(), model.findUserByName("Mateus Souza")));
 
     	
 	}

@@ -16,42 +16,16 @@ public class Model{
 	ObjectContainer Saida = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/Saida.db4o");
 	//
 	
-	ObjectContainer students = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/students.db4o");
-	ObjectContainer questions = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/questions.db4o");
-	ObjectContainer competencies = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/competencies.db4o");
-	ObjectContainer institutions = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/institutions.db4o");
-	ObjectContainer psychologists = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/psychologists.db4o");
-	ObjectContainer adms = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/adms.db4o");
-	
 
 	
 	// M�todo do projeto original modificado para ser usado no nullbills
 	public boolean addUser(User user){
 		
-		
-		//isUserAvailable(user.getUserName())
-		if(isUserAvailable(user.getUserName())){
-			/*List<Competency> studentsCompetencies = new LinkedList<Competency>();
-			
-			Query query = competencies.query();
-			query.constrain(Competency.class);
-		    ObjectSet<Competency> allCompetencies = query.execute();
-		    
-		    for(Competency competency:allCompetencies){
-		    	studentsCompetencies.add(competency);
-		    }
-			
-		    student.setCompetencies(studentsCompetencies);*/
-		    
 		    
 			users.store(user);
 			users.commit();
 			//System.out.print("Usuario adicionado");
-			return true;
-		}
-		//System.out.print("Usuario adicionado");
-		return false;
-		
+			return true;	
 	}
 	
 	//
