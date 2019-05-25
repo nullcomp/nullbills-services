@@ -45,7 +45,7 @@ public class MainServer {
 	
     public static void initializeModel(){
     	
-		model.addUser(new User("Mateus Souza", "senha", "mateus@fatec.sp.gov.br"));
+		//model.addUser(new User("Mateus Souza", "senha", "mateus@fatec.sp.gov.br", 0));
 		
     	//model.addEntrada(new Entrada(1200, new Date(), new Date(), model.findUserByName("Mateus Souza") ) );
     	//model.addEntrada(new Entrada(1500, new Date(), new Date(), model.findUserByName("Mateus Souza") ) );

@@ -4,13 +4,14 @@ public class User {
 	private String userName;
 	private String password;
 	private String eMail;
-	
+	private float Montante;
 	// Constructor 
-	User(String userName, String password, String eMail){
+	User(String userName, String password, String eMail, float montante){
 		if (userName.isEmpty() || password.isEmpty() || eMail.isEmpty()) return;
 		this.userName = userName;
 		this.password = password;
 		this.eMail = eMail;
+		this.Montante = montante;
 	}
 	
 	// Getters and Setters
@@ -39,6 +40,12 @@ public class User {
 		this.eMail = eMail;
 	}
 	
+	public void setMontante(float montante) {
+		this.Montante = montante;
+	}
 	
+	public float getMontante() {
+		return this.Montante;
+	}
 	
 }

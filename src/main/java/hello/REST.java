@@ -125,6 +125,7 @@ public class REST{
 		         		  jsonObj.put("Username", nuser.getUserName());
 		         		  jsonObj.put("Password", nuser.getPassword());
 		         		  jsonObj.put("email", nuser.geteMail());
+		         		  jsonObj.put("montante", nuser.getMontante());
 		         		  jsonResult.put(jsonObj);
 		       	    	}
 		       	    	
@@ -147,7 +148,7 @@ public class REST{
 
 	
 	public void returnOneUser() {
-		get("/findUser", new Route( ) {
+		post("/findUser", new Route( ) {
 			@Override
 			public Object handle(final Request request, final Response response) {
 				
@@ -162,20 +163,18 @@ public class REST{
 	            	JSONObject jsonObj = new JSONObject();
 	         	   	for(User nuser:allnUsers){
 	         		  
-	         		   String charlbro = request.body();
-	         		   System.out.println(charlbro);
-	         		   if (nuser.getUserName() == "Mateus Souza") {
-
-	 	         		  
+	         
+	         		   if (body.contains(nuser.getUserName()) && body.contains(nuser.getPassword()) ) {
 	 	         		  jsonObj.put("Username", nuser.getUserName());
 	 	         		  jsonObj.put("Password", nuser.getPassword());
 	 	         		  jsonObj.put("email", nuser.geteMail());
 	 	         		    
 	 	         		  response.status(200);
+	 	         		  return jsonObj;
 	         		   }
 	       	    	}
 	       	    	
-	         	   		return jsonObj;
+	         	   		return 404;
 	         	   	
 					} catch (JSONException e) {
 	        				
